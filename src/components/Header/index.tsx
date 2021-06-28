@@ -1,26 +1,41 @@
 import React, { useContext } from "react"
 
-import Switch from 'react-switch'
+//import Switch from 'react-switch'
 
-import { ThemeContext } from "styled-components"
+import AuthContext from "../../contexts/authContext"
 
-//import { shade } from 'polished'
+//import { ThemeContext } from "styled-components"
 
-import { Container } from "./styles"
+import { Button } from '@material-ui/core'
 
-interface Props {
-    toggleTheme(): void
-}
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
-const Header: React.FC<Props> = ({ toggleTheme }) => {
-    const { colors, title } = useContext(ThemeContext)
-    
+import { Container, UserArea } from "./styles"
+
+const Header: React.FC = () => {
+    //const { colors, title } = useContext(ThemeContext)
+
+    const { user, logout } = useContext(AuthContext)
+
     return (
         <Container>
-            Hello World
+            <>DFCom Sistemas</>
 
-            <Switch
-                onChange={toggleTheme}
+            <UserArea>
+                Usuário: {!!user ? user.name : 'Usuário não encontrado'}
+
+                <div style={{ margin: '0 20px'}}>
+                <Button
+                    variant="contained"
+                    startIcon={<ExitToAppIcon />}
+                    onClick={() => logout()}
+                >
+                    Logout
+                </Button>
+                </div>
+            </UserArea>
+            {/* {<Switch
+                onChange={() => {}}
                 checked={title === 'dark'}
                 checkedIcon={false}
                 uncheckedIcon={false}
@@ -29,7 +44,7 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
                 handleDiameter={20}
                 offColor={title === 'light' ? colors.secondary : colors.primary}
                 onColor={colors.secondary}
-            />
+            />} */}
         </Container>
     )
 }
