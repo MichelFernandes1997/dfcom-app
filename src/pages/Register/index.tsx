@@ -103,7 +103,7 @@ const Ong: React.FC = () => {
 
   const [infoPassword, setInfoPassword] = useState<infoPassword | null>(null)
 
-  const [infoconfirmPassword, setInfoconfirmPassword] = useState<string | null>(
+  const [infoConfirmPassword, setinfoConfirmPassword] = useState<string | null>(
     null
   )
 
@@ -115,13 +115,13 @@ const Ong: React.FC = () => {
 
   const formInvalido = useRef<object>({}) as any
 
-  const handleValidityname = () => {
+  const handleValidityName = () => {
     if (name !== null) {
       setInfoName("")
     }
   }
 
-  const handleChangename = (input: string) => {
+  const handleChangeName = (input: string) => {
     if (input === "") {
       setname(null)
     } else {
@@ -151,7 +151,7 @@ const Ong: React.FC = () => {
     }
   }
 
-  const handleValiditypassword = () => {
+  const handleValidityPassword = () => {
     if (password !== null) {
       let validitySpecialChars = /^(?=.*[@!#$%^&*()/\\])/
 
@@ -271,7 +271,7 @@ const Ong: React.FC = () => {
     }
   }
 
-  const handleChangepassword = (input: string) => {
+  const handleChangePassword = (input: string) => {
     if (input !== "") {
       setPassword(input)
     } else {
@@ -279,19 +279,19 @@ const Ong: React.FC = () => {
     }
   }
 
-  const handleValidityconfirmPassword = () => {
+  const handleValidityConfirmPassword = () => {
     if (confirmPassword !== null) {
       if (confirmPassword !== password) {
-        setInfoconfirmPassword("As passwords digitadas não são iguais")
+        setinfoConfirmPassword("As passwords digitadas não são iguais")
       } else {
-        setInfoconfirmPassword("")
+        setinfoConfirmPassword("")
       }
     } else {
-      setInfoconfirmPassword(null)
+      setinfoConfirmPassword(null)
     }
   }
 
-  const handleChangeconfirmPassword = (input: string) => {
+  const handleChangeConfirmPassword = (input: string) => {
     if (input !== "") {
       setConfirmPassword(input)
     } else {
@@ -333,14 +333,14 @@ const Ong: React.FC = () => {
       formInvalido.current.infoPassword = false
     }
 
-    if (infoconfirmPassword === null) {
-      formInvalido.current.infoconfirmPassword = true
+    if (infoConfirmPassword === null) {
+      formInvalido.current.infoConfirmPassword = true
 
-      setInfoconfirmPassword("Campo obrigatório")
-    } else if (infoconfirmPassword === "Campo obrigatório" || infoconfirmPassword === "As passwords digitadas não são iguais") {
-      formInvalido.current.infoconfirmPassword = true
+      setinfoConfirmPassword("Campo obrigatório")
+    } else if (infoConfirmPassword === "Campo obrigatório" || infoConfirmPassword === "As passwords digitadas não são iguais") {
+      formInvalido.current.infoConfirmPassword = true
     } else {
-      formInvalido.current.infoconfirmPassword = false
+      formInvalido.current.infoConfirmPassword = false
     }
 
     if (infoName !== "") {
@@ -351,7 +351,7 @@ const Ong: React.FC = () => {
       formInvalido.current.infoName = false
     }
 
-    if (!formInvalido.current.infoEmail && !formInvalido.current.infoCnpj && !formInvalido.current.infoName && !formInvalido.current.infoconfirmPassword && !formInvalido.current.infoPassword && !formInvalido.current.dataCriacao && !formInvalido.current.infoDescricao) {
+    if (!formInvalido.current.infoEmail && !formInvalido.current.infoCnpj && !formInvalido.current.infoName && !formInvalido.current.infoConfirmPassword && !formInvalido.current.infoPassword && !formInvalido.current.dataCriacao && !formInvalido.current.infoDescricao) {
       const user = {
         name,
         email,
@@ -364,7 +364,7 @@ const Ong: React.FC = () => {
 
   useEffect(() => {
     if (name !== "") {
-      handleValidityname()
+      handleValidityName()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name])
@@ -378,14 +378,14 @@ const Ong: React.FC = () => {
 
   useEffect(() => {
     if (password !== "") {
-      handleValiditypassword();
+      handleValidityPassword();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [password])
 
   useEffect(() => {
     if (confirmPassword !== "") {
-      handleValidityconfirmPassword();
+      handleValidityConfirmPassword();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [confirmPassword])
@@ -445,7 +445,7 @@ const Ong: React.FC = () => {
                     }
                     variant="outlined"
                     className={classes.fullWidth}
-                    onChange={(e) => handleChangename(e.target.value)}
+                    onChange={(e) => handleChangeName(e.target.value)}
                   />
                 </Grid>
 
@@ -539,7 +539,7 @@ const Ong: React.FC = () => {
                     }
                     variant="outlined"
                     className={classes.fullWidth}
-                    onChange={(e) => handleChangepassword(e.target.value)}
+                    onChange={(e) => handleChangePassword(e.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -554,12 +554,12 @@ const Ong: React.FC = () => {
                     placeholder="Confirmação de password"
                     helperText={
                       <Typography variant="subtitle2" color="error">
-                        {infoconfirmPassword}
+                        {infoConfirmPassword}
                       </Typography>
                     }
                     variant="outlined"
                     className={classes.fullWidth}
-                    onChange={(e) => handleChangeconfirmPassword(e.target.value)}
+                    onChange={(e) => handleChangeConfirmPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}></Grid>
